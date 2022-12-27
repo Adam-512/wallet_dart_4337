@@ -9,7 +9,7 @@ import 'package:web3dart/web3dart.dart';
 class UserOperation {
   //
   static const defaultGas = 215000;
-  static const _defaultMaxFee = 50000000000; // 50 Gwei
+  static const _defaultMaxFee = 10000000000; // 50 Gwei
   static const initNonce = 0;
   static const nullCode = "0x";
   //
@@ -22,8 +22,8 @@ class UserOperation {
   int preVerificationGas;
   int maxFeePerGas;
   int maxPriorityFeePerGas;
-  EthereumAddress paymaster;
-  String paymasterData;
+  // EthereumAddress paymaster;
+  String paymasterAndData;
   String signature;
   String moduleManagerSalt;
 
@@ -37,8 +37,8 @@ class UserOperation {
       required this.preVerificationGas,
       required this.maxFeePerGas,
       required this.maxPriorityFeePerGas,
-      required this.paymaster,
-      required this.paymasterData,
+      // required this.paymaster,
+      required this.paymasterAndData,
       required this.signature,
       required this.moduleManagerSalt
       });
@@ -48,13 +48,13 @@ class UserOperation {
         nonce = json['nonce'],
         initCode = json['initCode'],
         callData = json['callData'],
-        callGas = json['callGas'],
-        verificationGas = json['verificationGas'],
+        callGas = json['callGasLimit'],
+        verificationGas = json['verificationGasLimit'],
         preVerificationGas = json['preVerificationGas'],
         maxFeePerGas = json['maxFeePerGas'],
         maxPriorityFeePerGas = json['maxPriorityFeePerGas'],
-        paymaster = EthereumAddress.fromHex(json['paymaster']),
-        paymasterData = json['paymasterData'],
+        // paymaster = EthereumAddress.fromHex(json['paymaster']),
+        paymasterAndData = json['paymasterAndData'],
         signature = json['signature'],
         moduleManagerSalt = json['moduleManagerSalt'];
 
@@ -63,13 +63,13 @@ class UserOperation {
     'nonce': nonce,
     'initCode': initCode,
     'callData': callData,
-    'callGas': callGas,
-    'verificationGas': verificationGas,
+    'callGasLimit': callGas,
+    'verificationGasLimit': verificationGas,
     'preVerificationGas': preVerificationGas,
     'maxFeePerGas': maxFeePerGas,
     'maxPriorityFeePerGas': maxPriorityFeePerGas,
-    'paymaster': paymaster.hexEip55,
-    'paymasterData': paymasterData,
+    // 'paymaster': paymaster.hexEip55,
+    'paymasterAndData': paymasterAndData,
     'signature': signature,
     'moduleManagerSalt': moduleManagerSalt,
   };
@@ -84,8 +84,8 @@ class UserOperation {
     hexRepresentation ? preVerificationGas.toString() : BigInt.from(preVerificationGas),
     hexRepresentation ? maxFeePerGas.toString() : BigInt.from(maxFeePerGas),
     hexRepresentation ? maxPriorityFeePerGas.toString() : BigInt.from(maxPriorityFeePerGas),
-    hexRepresentation ? paymaster.hexEip55 : paymaster,
-    hexRepresentation ? paymasterData : hexToBytes(paymasterData),
+    // hexRepresentation ? paymaster.hexEip55 : paymaster,
+    hexRepresentation ? paymasterAndData : hexToBytes(paymasterAndData),
     hexRepresentation ? signature : hexToBytes(signature)
   ];
 
@@ -99,8 +99,8 @@ class UserOperation {
     int? preVerificationGas,
     int? maxFeePerGas,
     int? maxPriorityFeePerGas,
-    EthereumAddress? paymaster,
-    String? paymasterData,
+    // EthereumAddress? paymaster,
+    String? paymasterAndData,
     String? signature,
     String? moduleManagerSalt,
   }){
@@ -114,8 +114,8 @@ class UserOperation {
       preVerificationGas: preVerificationGas ?? defaultGas,
       maxFeePerGas: maxFeePerGas ?? _defaultMaxFee,
       maxPriorityFeePerGas: maxPriorityFeePerGas ?? _defaultMaxFee,
-      paymaster: paymaster ?? EthereumAddress(Uint8List(EthereumAddress.addressByteLength)),
-      paymasterData: paymasterData ?? nullCode,
+      // paymaster: paymaster ?? EthereumAddress(Uint8List(EthereumAddress.addressByteLength)),
+      paymasterAndData: paymasterAndData ?? nullCode,
       signature: signature ?? nullCode,
       moduleManagerSalt: moduleManagerSalt ?? nullCode,
     );

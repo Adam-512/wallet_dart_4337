@@ -23,7 +23,7 @@ class Message {
               "uint256",
               "uint256",
               "uint256",
-              "address",
+              // "address",
               "bytes32",
             ],
             [
@@ -36,8 +36,8 @@ class Message {
               op.preVerificationGas,
               op.maxFeePerGas,
               op.maxPriorityFeePerGas,
-              op.paymaster,
-              bytesToHex(keccak256(hexToBytes(op.paymasterData)), include0x: true),
+              // op.paymaster,
+              bytesToHex(keccak256(hexToBytes(op.paymasterAndData)), include0x: true),
             ]
         )
     );

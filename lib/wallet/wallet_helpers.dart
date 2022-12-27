@@ -129,12 +129,13 @@ class WalletHelpers {
   }
 
   static String getWalletManagerAddress(String _salt){
-    Uint8List salt = keccak256(Uint8List.fromList("${_salt}_moduleManager".codeUnits));
-    return _WalletHelperUtils.getCreate2Address(
-      Constants.singletonFactoryAddress,
-      salt,
-      keccak256(getManagerInitCode()),
-    );
+    // Uint8List salt = keccak256(Uint8List.fromList("${_salt}_moduleManager".codeUnits));
+    // return _WalletHelperUtils.getCreate2Address(
+    //   Constants.singletonFactoryAddress,
+    //   salt,
+    //   keccak256(getManagerInitCode()),
+    // );
+    return "0xc5Cc9826E43628bFC241E37c5dC3D0DaD9b34b10";
   }
 
   static String getSocialRecoveryAddress(String _salt){

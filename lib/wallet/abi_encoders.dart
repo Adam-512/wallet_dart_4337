@@ -40,8 +40,7 @@ class AbiEncoders {
             { "type": "uint256", "name": "preVerificationGas" },
             { "type": "uint256", "name": "maxFeePerGas" },
             { "type": "uint256", "name": "maxPriorityFeePerGas" },
-            { "type": "address", "name": "paymasterAndData" },
-            { "type": "bytes", "name": "paymasterData" },
+            { "type": "bytes", "name": "paymasterAndData" },
             { "type": "bytes", "name": "signature" }
           ],
           "name": "userOp",
