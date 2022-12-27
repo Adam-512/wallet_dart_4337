@@ -42,6 +42,17 @@ class EncodeFunctionData {
     ]), include0x: true);
   }
 
+  static execSchemaTransaction(BigInt startTimestamp, BigInt endTimestamp, EthereumAddress to, BigInt value, Uint8List data, BigInt operation){
+    return bytesToHex(CWallet.interface.self.function("execSchemaTransaction").encodeCall([
+      startTimestamp,
+      endTimestamp,
+      to,
+      value,
+      data,
+      operation
+    ]), include0x: true);
+  }
+
   static getTransactionHash(
     EthereumAddress to,
     BigInt value,
