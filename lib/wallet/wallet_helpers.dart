@@ -123,7 +123,7 @@ class WalletHelpers {
   static String getWalletAddress(EthereumAddress initOwner, EthereumAddress moduleManager){
     return _WalletHelperUtils.getCreate2Address(
       Constants.singletonFactoryAddress,
-      hexToBytes(bytesToHex(String.fromCharCode(UserOperation.initNonce).codeUnits, include0x: true, forcePadLength: 64)),
+      hexToBytes(bytesToHex(String.fromCharCode(int.parse(UserOperation.initNonce)).codeUnits, include0x: true, forcePadLength: 64)),
       keccak256(getInitCode(initOwner, moduleManager)),
     );
   }

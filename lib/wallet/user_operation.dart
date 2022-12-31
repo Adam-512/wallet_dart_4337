@@ -10,11 +10,11 @@ class UserOperation {
   //
   static const defaultGas = 215000;
   static const _defaultMaxFee = 10000000000; // 50 Gwei
-  static const initNonce = 0;
+  static const initNonce = '0';
   static const nullCode = "0x";
   //
   EthereumAddress sender;
-  int nonce;
+  String nonce;
   String initCode;
   String callData;
   int callGas;
@@ -60,7 +60,7 @@ class UserOperation {
 
   Map<String, dynamic> toJson() => {
     'sender': sender.hexEip55,
-    'nonce': nonce,
+    'nonce': nonce.toString(),
     'initCode': initCode,
     'callData': callData,
     'callGasLimit': callGas,
@@ -76,7 +76,7 @@ class UserOperation {
 
   List<dynamic> toList({bool hexRepresentation = false}) => [
     hexRepresentation ? sender.hexEip55 : sender,
-    hexRepresentation ? nonce.toString() : BigInt.from(nonce),
+    hexRepresentation ? nonce.toString() : BigInt.from(int.parse(nonce)),
     hexRepresentation ? initCode : hexToBytes(initCode),
     hexRepresentation ? callData : hexToBytes(callData),
     hexRepresentation ? callGas.toString() : BigInt.from(callGas),
@@ -91,7 +91,7 @@ class UserOperation {
 
   static UserOperation get({
     EthereumAddress? sender,
-    int? nonce,
+    String? nonce,
     String? initCode,
     String? callData,
     int? callGas,
