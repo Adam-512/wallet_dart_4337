@@ -9,6 +9,9 @@ class WalletInstance {
   String salt;
   String encryptedSigner;
 
+  String get shortWalletAddress =>
+      "${walletAddress.hexEip55.substring(0, 5)}...${walletAddress.hexEip55.substring(walletAddress.hexEip55.length - 4)}";
+
   WalletInstance(
       {required this.walletAddress,
       required this.moduleManager,
@@ -23,18 +26,18 @@ class WalletInstance {
         moduleManager = EthereumAddress.fromHex(json['moduleManager']),
         socialRecovery = EthereumAddress.fromHex(json['socialRecovery']),
         initOwner = json['initOwner'],
-        initGuardians = List<EthereumAddress>.from(json['initGuardians'].map((e) => EthereumAddress.fromHex(e))),
+        initGuardians = List<EthereumAddress>.from(
+            json['initGuardians'].map((e) => EthereumAddress.fromHex(e))),
         salt = json['salt'],
         encryptedSigner = json['encryptedSigner'];
 
   Map<String, dynamic> toJson() => {
-    'walletAddress': walletAddress.hexEip55,
-    'moduleManager': moduleManager.hexEip55,
-    'socialRecovery': socialRecovery.hexEip55,
-    'initOwner': initOwner,
-    'initGuardians': initGuardians.map((e) => e.hex).toList(),
-    'salt': salt,
-    'encryptedSigner': encryptedSigner,
-  };
-
+        'walletAddress': walletAddress.hexEip55,
+        'moduleManager': moduleManager.hexEip55,
+        'socialRecovery': socialRecovery.hexEip55,
+        'initOwner': initOwner,
+        'initGuardians': initGuardians.map((e) => e.hex).toList(),
+        'salt': salt,
+        'encryptedSigner': encryptedSigner,
+      };
 }
