@@ -182,6 +182,13 @@ class EncodeFunctionData {
     );
   }
 
+  static disableModule(EthereumAddress prevModule,EthereumAddress targetModule){
+    return bytesToHex(
+        CWallet.interface.self.function("disableModule").encodeCall([prevModule,targetModule]),
+        include0x: true
+    );
+  }
+
   static setupSocialRecoveryModule(EthereumAddress guardian, BigInt threshold){
     return bytesToHex(
         CWallet.recoveryInterface(Constants.zeroAddress).self.function("setup").encodeCall([[guardian], threshold]),
