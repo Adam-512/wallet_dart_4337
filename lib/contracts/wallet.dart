@@ -5,6 +5,7 @@ import 'package:wallet_dart/contracts/factories/EIP4337Manager.g.dart' as w;
 import 'package:wallet_dart/contracts/factories/MultiSendCallOnly.g.dart';
 import 'package:wallet_dart/contracts/factories/SafeProxy.g.dart';
 import 'package:wallet_dart/contracts/factories/SocialRecoveryModule.g.dart';
+import 'package:wallet_dart/contracts/factories/RecoveryModule.g.dart';
 import 'package:web3dart/web3dart.dart';
 
 class CWallet {
@@ -15,4 +16,5 @@ class CWallet {
   static MultiSendCallOnly multiSendCallOnlyInterface = MultiSendCallOnly(address: EthereumAddress(Uint8List(20)), client: Constants.web3client);
   static w.EIP4337Manager customInterface(EthereumAddress address, {Web3Client? client}) => w.EIP4337Manager(address: address, client: client ?? Constants.web3client);
   static SocialRecoveryModule recoveryInterface(EthereumAddress address, {Web3Client? client}) => SocialRecoveryModule(address: address, client: client ?? Constants.web3client);
+  static RecoveryModule recoveryModule(EthereumAddress address, {Web3Client? client}) => RecoveryModule(address: address, client: client ?? Constants.web3client);
 }

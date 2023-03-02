@@ -5,7 +5,7 @@ import 'package:web3dart/web3dart.dart' as _i1;
 import 'dart:typed_data' as _i2;
 
 final _contractAbi = _i1.ContractAbi.fromJson(
-  '[{"inputs":[{"internalType":"address","name":"_gasReceiver","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"address","name":"guardian","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"}],"name":"AddGuardian","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"}],"name":"ChangeThreshold","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"address","name":"newOwner","type":"address"},{"indexed":false,"internalType":"address","name":"payGasToken","type":"address"},{"indexed":false,"internalType":"uint256","name":"payGasAmount","type":"uint256"}],"name":"DoRecovery","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"},{"indexed":false,"internalType":"address[]","name":"guardians","type":"address[]"}],"name":"InitRecovery","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"address","name":"guardian","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"}],"name":"RevokeGuardian","type":"event"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_guardian","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"}],"name":"addGuardian","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_newGasReceiver","type":"address"}],"name":"changeGasReceiver","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"}],"name":"changeThreshold","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_newOwner","type":"address"},{"components":[{"internalType":"address","name":"signer","type":"address"},{"internalType":"bytes","name":"signature","type":"bytes"}],"internalType":"struct SocialRecoveryModule.SignatureData[]","name":"_signatureData","type":"tuple[]"},{"components":[{"internalType":"address","name":"payGasToken","type":"address"},{"internalType":"uint256","name":"payGasAmount","type":"uint256"}],"internalType":"struct SocialRecoveryModule.PayGasData","name":"_payGasData","type":"tuple"}],"name":"doRecovery","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_newOwner","type":"address"},{"internalType":"uint256","name":"_nonce","type":"uint256"},{"components":[{"internalType":"address","name":"payGasToken","type":"address"},{"internalType":"uint256","name":"payGasAmount","type":"uint256"}],"internalType":"struct SocialRecoveryModule.PayGasData","name":"_payGasData","type":"tuple"}],"name":"encodeRecoveryData","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"gasReceiver","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getChainId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"}],"name":"getGuardians","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"}],"name":"guardiansCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"},{"internalType":"address[]","name":"_orderedGuardianWallet","type":"address[]"}],"name":"initRecovery","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_guardian","type":"address"}],"name":"isGuardian","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_prevGuardian","type":"address"},{"internalType":"address","name":"_guardian","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"}],"name":"revokeGuardian","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"}],"name":"threshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"bytes32","name":"_signHash","type":"bytes32"},{"internalType":"address","name":"_signer","type":"address"},{"internalType":"bytes","name":"_signature","type":"bytes"}],"name":"validateGuardianSignature","outputs":[],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"walletsInit","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"walletsNonces","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]',
+  '[{"inputs":[{"internalType":"address","name":"_gasReceiver","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"uint256","name":"gasUsed","type":"uint256"}],"name":"SimulateDoRecovery","type":"error"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"address","name":"guardian","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"}],"name":"AddGuardian","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"address[]","name":"guardians","type":"address[]"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"}],"name":"AddGuardians","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"}],"name":"ChangeThreshold","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"address","name":"newOwner","type":"address"},{"indexed":false,"internalType":"address","name":"payGasToken","type":"address"},{"indexed":false,"internalType":"uint256","name":"payGasAmount","type":"uint256"}],"name":"DoRecovery","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"},{"indexed":false,"internalType":"address[]","name":"guardians","type":"address[]"}],"name":"ResetRecovery","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"address","name":"guardian","type":"address"},{"indexed":false,"internalType":"uint256","name":"threshold","type":"uint256"}],"name":"RevokeGuardian","type":"event"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_guardian","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"}],"name":"addGuardian","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address[]","name":"_guardians","type":"address[]"},{"internalType":"uint256","name":"_threshold","type":"uint256"}],"name":"addGuardians","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_newGasReceiver","type":"address"}],"name":"changeGasReceiver","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"}],"name":"changeThreshold","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_newOwner","type":"address"},{"components":[{"internalType":"address","name":"signer","type":"address"},{"internalType":"bytes","name":"signature","type":"bytes"}],"internalType":"struct SocialRecoveryModule.SignatureData[]","name":"_signatureData","type":"tuple[]"},{"components":[{"internalType":"address","name":"payGasToken","type":"address"},{"internalType":"uint256","name":"payGasAmount","type":"uint256"}],"internalType":"struct SocialRecoveryModule.PayGasData","name":"_payGasData","type":"tuple"}],"name":"doRecovery","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_newOwner","type":"address"},{"internalType":"uint256","name":"_nonce","type":"uint256"},{"components":[{"internalType":"address","name":"payGasToken","type":"address"},{"internalType":"uint256","name":"payGasAmount","type":"uint256"}],"internalType":"struct SocialRecoveryModule.PayGasData","name":"_payGasData","type":"tuple"}],"name":"encodeRecoveryData","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"gasReceiver","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getChainId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"}],"name":"getGuardians","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"}],"name":"guardiansCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_guardian","type":"address"}],"name":"isGuardian","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"},{"internalType":"address[]","name":"_orderedGuardianWallet","type":"address[]"}],"name":"resetGuardians","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_prevGuardian","type":"address"},{"internalType":"address","name":"_guardian","type":"address"},{"internalType":"uint256","name":"_threshold","type":"uint256"}],"name":"revokeGuardian","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"address","name":"_newOwner","type":"address"},{"components":[{"internalType":"address","name":"signer","type":"address"},{"internalType":"bytes","name":"signature","type":"bytes"}],"internalType":"struct SocialRecoveryModule.SignatureData[]","name":"_signatureData","type":"tuple[]"},{"components":[{"internalType":"address","name":"payGasToken","type":"address"},{"internalType":"uint256","name":"payGasAmount","type":"uint256"}],"internalType":"struct SocialRecoveryModule.PayGasData","name":"_payGasData","type":"tuple"}],"name":"simulateDoRecovery","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wallet","type":"address"}],"name":"threshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"walletsNonces","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]',
   'RecoveryModule',
 );
 
@@ -51,12 +51,37 @@ class RecoveryModule extends _i1.GeneratedContract {
   /// The optional [transaction] parameter can be used to override parameters
   /// like the gas price, nonce and max gas. The `data` and `to` fields will be
   /// set by the contract.
+  Future<String> addGuardians(
+    _i1.EthereumAddress _wallet,
+    List<_i1.EthereumAddress> _guardians,
+    BigInt _threshold, {
+    required _i1.Credentials credentials,
+    _i1.Transaction? transaction,
+  }) async {
+    final function = self.abi.functions[2];
+    assert(checkSignature(function, '4882af77'));
+    final params = [
+      _wallet,
+      _guardians,
+      _threshold,
+    ];
+    return write(
+      credentials,
+      transaction,
+      function,
+      params,
+    );
+  }
+
+  /// The optional [transaction] parameter can be used to override parameters
+  /// like the gas price, nonce and max gas. The `data` and `to` fields will be
+  /// set by the contract.
   Future<String> changeGasReceiver(
     _i1.EthereumAddress _newGasReceiver, {
     required _i1.Credentials credentials,
     _i1.Transaction? transaction,
   }) async {
-    final function = self.abi.functions[2];
+    final function = self.abi.functions[3];
     assert(checkSignature(function, '256674a0'));
     final params = [_newGasReceiver];
     return write(
@@ -76,7 +101,7 @@ class RecoveryModule extends _i1.GeneratedContract {
     required _i1.Credentials credentials,
     _i1.Transaction? transaction,
   }) async {
-    final function = self.abi.functions[3];
+    final function = self.abi.functions[4];
     assert(checkSignature(function, '57cfebbc'));
     final params = [
       _wallet,
@@ -101,7 +126,7 @@ class RecoveryModule extends _i1.GeneratedContract {
     required _i1.Credentials credentials,
     _i1.Transaction? transaction,
   }) async {
-    final function = self.abi.functions[4];
+    final function = self.abi.functions[5];
     assert(checkSignature(function, 'dabf0fd3'));
     final params = [
       _wallet,
@@ -127,7 +152,7 @@ class RecoveryModule extends _i1.GeneratedContract {
     dynamic _payGasData, {
     _i1.BlockNum? atBlock,
   }) async {
-    final function = self.abi.functions[5];
+    final function = self.abi.functions[6];
     assert(checkSignature(function, 'aef11269'));
     final params = [
       _wallet,
@@ -147,7 +172,7 @@ class RecoveryModule extends _i1.GeneratedContract {
   /// set, the function will be evaluated in the specified block. By default, the
   /// latest on-chain block will be used.
   Future<_i1.EthereumAddress> gasReceiver({_i1.BlockNum? atBlock}) async {
-    final function = self.abi.functions[6];
+    final function = self.abi.functions[7];
     assert(checkSignature(function, '80d14b4a'));
     final params = [];
     final response = await read(
@@ -162,7 +187,7 @@ class RecoveryModule extends _i1.GeneratedContract {
   /// set, the function will be evaluated in the specified block. By default, the
   /// latest on-chain block will be used.
   Future<BigInt> getChainId({_i1.BlockNum? atBlock}) async {
-    final function = self.abi.functions[7];
+    final function = self.abi.functions[8];
     assert(checkSignature(function, '3408e470'));
     final params = [];
     final response = await read(
@@ -180,7 +205,7 @@ class RecoveryModule extends _i1.GeneratedContract {
     _i1.EthereumAddress _wallet, {
     _i1.BlockNum? atBlock,
   }) async {
-    final function = self.abi.functions[8];
+    final function = self.abi.functions[9];
     assert(checkSignature(function, 'f18858ab'));
     final params = [_wallet];
     final response = await read(
@@ -198,7 +223,7 @@ class RecoveryModule extends _i1.GeneratedContract {
     _i1.EthereumAddress _wallet, {
     _i1.BlockNum? atBlock,
   }) async {
-    final function = self.abi.functions[9];
+    final function = self.abi.functions[10];
     assert(checkSignature(function, 'c026e7ee'));
     final params = [_wallet];
     final response = await read(
@@ -207,31 +232,6 @@ class RecoveryModule extends _i1.GeneratedContract {
       atBlock,
     );
     return (response[0] as BigInt);
-  }
-
-  /// The optional [transaction] parameter can be used to override parameters
-  /// like the gas price, nonce and max gas. The `data` and `to` fields will be
-  /// set by the contract.
-  Future<String> initRecovery(
-    _i1.EthereumAddress _wallet,
-    BigInt _threshold,
-    List<_i1.EthereumAddress> _orderedGuardianWallet, {
-    required _i1.Credentials credentials,
-    _i1.Transaction? transaction,
-  }) async {
-    final function = self.abi.functions[10];
-    assert(checkSignature(function, 'be44912a'));
-    final params = [
-      _wallet,
-      _threshold,
-      _orderedGuardianWallet,
-    ];
-    return write(
-      credentials,
-      transaction,
-      function,
-      params,
-    );
   }
 
   /// The optional [atBlock] parameter can be used to view historical data. When
@@ -292,6 +292,31 @@ class RecoveryModule extends _i1.GeneratedContract {
   /// The optional [transaction] parameter can be used to override parameters
   /// like the gas price, nonce and max gas. The `data` and `to` fields will be
   /// set by the contract.
+  Future<String> resetGuardians(
+    _i1.EthereumAddress _wallet,
+    BigInt _threshold,
+    List<_i1.EthereumAddress> _orderedGuardianWallet, {
+    required _i1.Credentials credentials,
+    _i1.Transaction? transaction,
+  }) async {
+    final function = self.abi.functions[14];
+    assert(checkSignature(function, '61c276e1'));
+    final params = [
+      _wallet,
+      _threshold,
+      _orderedGuardianWallet,
+    ];
+    return write(
+      credentials,
+      transaction,
+      function,
+      params,
+    );
+  }
+
+  /// The optional [transaction] parameter can be used to override parameters
+  /// like the gas price, nonce and max gas. The `data` and `to` fields will be
+  /// set by the contract.
   Future<String> revokeGuardian(
     _i1.EthereumAddress _wallet,
     _i1.EthereumAddress _prevGuardian,
@@ -300,13 +325,40 @@ class RecoveryModule extends _i1.GeneratedContract {
     required _i1.Credentials credentials,
     _i1.Transaction? transaction,
   }) async {
-    final function = self.abi.functions[14];
+    final function = self.abi.functions[15];
     assert(checkSignature(function, '60e67b43'));
     final params = [
       _wallet,
       _prevGuardian,
       _guardian,
       _threshold,
+    ];
+    return write(
+      credentials,
+      transaction,
+      function,
+      params,
+    );
+  }
+
+  /// The optional [transaction] parameter can be used to override parameters
+  /// like the gas price, nonce and max gas. The `data` and `to` fields will be
+  /// set by the contract.
+  Future<String> simulateDoRecovery(
+    _i1.EthereumAddress _wallet,
+    _i1.EthereumAddress _newOwner,
+    List<dynamic> _signatureData,
+    dynamic _payGasData, {
+    required _i1.Credentials credentials,
+    _i1.Transaction? transaction,
+  }) async {
+    final function = self.abi.functions[16];
+    assert(checkSignature(function, '7ffc0f90'));
+    final params = [
+      _wallet,
+      _newOwner,
+      _signatureData,
+      _payGasData,
     ];
     return write(
       credentials,
@@ -323,7 +375,7 @@ class RecoveryModule extends _i1.GeneratedContract {
     _i1.EthereumAddress _wallet, {
     _i1.BlockNum? atBlock,
   }) async {
-    final function = self.abi.functions[15];
+    final function = self.abi.functions[17];
     assert(checkSignature(function, 'c86ec2bf'));
     final params = [_wallet];
     final response = await read(
@@ -342,7 +394,7 @@ class RecoveryModule extends _i1.GeneratedContract {
     required _i1.Credentials credentials,
     _i1.Transaction? transaction,
   }) async {
-    final function = self.abi.functions[16];
+    final function = self.abi.functions[18];
     assert(checkSignature(function, 'f2fde38b'));
     final params = [newOwner];
     return write(
@@ -356,31 +408,13 @@ class RecoveryModule extends _i1.GeneratedContract {
   /// The optional [atBlock] parameter can be used to view historical data. When
   /// set, the function will be evaluated in the specified block. By default, the
   /// latest on-chain block will be used.
-  Future<bool> walletsInit(
-    _i1.EthereumAddress $param31, {
-    _i1.BlockNum? atBlock,
-  }) async {
-    final function = self.abi.functions[18];
-    assert(checkSignature(function, '4168741a'));
-    final params = [$param31];
-    final response = await read(
-      function,
-      params,
-      atBlock,
-    );
-    return (response[0] as bool);
-  }
-
-  /// The optional [atBlock] parameter can be used to view historical data. When
-  /// set, the function will be evaluated in the specified block. By default, the
-  /// latest on-chain block will be used.
   Future<BigInt> walletsNonces(
-    _i1.EthereumAddress $param32, {
+    _i1.EthereumAddress $param34, {
     _i1.BlockNum? atBlock,
   }) async {
     final function = self.abi.functions[19];
     assert(checkSignature(function, '26b3716c'));
-    final params = [$param32];
+    final params = [$param34];
     final response = await read(
       function,
       params,
@@ -407,6 +441,27 @@ class RecoveryModule extends _i1.GeneratedContract {
         result.data!,
       );
       return AddGuardian(decoded);
+    });
+  }
+
+  /// Returns a live stream of all AddGuardians events emitted by this contract.
+  Stream<AddGuardians> addGuardiansEvents({
+    _i1.BlockNum? fromBlock,
+    _i1.BlockNum? toBlock,
+  }) {
+    final event = self.event('AddGuardians');
+    final filter = _i1.FilterOptions.events(
+      contract: self,
+      event: event,
+      fromBlock: fromBlock,
+      toBlock: toBlock,
+    );
+    return client.events(filter).map((_i1.FilterEvent result) {
+      final decoded = event.decodeResults(
+        result.topics!,
+        result.data!,
+      );
+      return AddGuardians(decoded);
     });
   }
 
@@ -452,27 +507,6 @@ class RecoveryModule extends _i1.GeneratedContract {
     });
   }
 
-  /// Returns a live stream of all InitRecovery events emitted by this contract.
-  Stream<InitRecovery> initRecoveryEvents({
-    _i1.BlockNum? fromBlock,
-    _i1.BlockNum? toBlock,
-  }) {
-    final event = self.event('InitRecovery');
-    final filter = _i1.FilterOptions.events(
-      contract: self,
-      event: event,
-      fromBlock: fromBlock,
-      toBlock: toBlock,
-    );
-    return client.events(filter).map((_i1.FilterEvent result) {
-      final decoded = event.decodeResults(
-        result.topics!,
-        result.data!,
-      );
-      return InitRecovery(decoded);
-    });
-  }
-
   /// Returns a live stream of all OwnershipTransferred events emitted by this contract.
   Stream<OwnershipTransferred> ownershipTransferredEvents({
     _i1.BlockNum? fromBlock,
@@ -491,6 +525,27 @@ class RecoveryModule extends _i1.GeneratedContract {
         result.data!,
       );
       return OwnershipTransferred(decoded);
+    });
+  }
+
+  /// Returns a live stream of all ResetRecovery events emitted by this contract.
+  Stream<ResetRecovery> resetRecoveryEvents({
+    _i1.BlockNum? fromBlock,
+    _i1.BlockNum? toBlock,
+  }) {
+    final event = self.event('ResetRecovery');
+    final filter = _i1.FilterOptions.events(
+      contract: self,
+      event: event,
+      fromBlock: fromBlock,
+      toBlock: toBlock,
+    );
+    return client.events(filter).map((_i1.FilterEvent result) {
+      final decoded = event.decodeResults(
+        result.topics!,
+        result.data!,
+      );
+      return ResetRecovery(decoded);
     });
   }
 
@@ -529,6 +584,19 @@ class AddGuardian {
   final BigInt threshold;
 }
 
+class AddGuardians {
+  AddGuardians(List<dynamic> response)
+      : wallet = (response[0] as _i1.EthereumAddress),
+        guardians = (response[1] as List<dynamic>).cast<_i1.EthereumAddress>(),
+        threshold = (response[2] as BigInt);
+
+  final _i1.EthereumAddress wallet;
+
+  final List<_i1.EthereumAddress> guardians;
+
+  final BigInt threshold;
+}
+
 class ChangeThreshold {
   ChangeThreshold(List<dynamic> response)
       : wallet = (response[0] as _i1.EthereumAddress),
@@ -555,8 +623,18 @@ class DoRecovery {
   final BigInt payGasAmount;
 }
 
-class InitRecovery {
-  InitRecovery(List<dynamic> response)
+class OwnershipTransferred {
+  OwnershipTransferred(List<dynamic> response)
+      : previousOwner = (response[0] as _i1.EthereumAddress),
+        newOwner = (response[1] as _i1.EthereumAddress);
+
+  final _i1.EthereumAddress previousOwner;
+
+  final _i1.EthereumAddress newOwner;
+}
+
+class ResetRecovery {
+  ResetRecovery(List<dynamic> response)
       : wallet = (response[0] as _i1.EthereumAddress),
         threshold = (response[1] as BigInt),
         guardians = (response[2] as List<dynamic>).cast<_i1.EthereumAddress>();
@@ -566,16 +644,6 @@ class InitRecovery {
   final BigInt threshold;
 
   final List<_i1.EthereumAddress> guardians;
-}
-
-class OwnershipTransferred {
-  OwnershipTransferred(List<dynamic> response)
-      : previousOwner = (response[0] as _i1.EthereumAddress),
-        newOwner = (response[1] as _i1.EthereumAddress);
-
-  final _i1.EthereumAddress previousOwner;
-
-  final _i1.EthereumAddress newOwner;
 }
 
 class RevokeGuardian {

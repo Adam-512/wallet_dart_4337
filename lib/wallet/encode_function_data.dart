@@ -224,5 +224,12 @@ class EncodeFunctionData {
         include0x: true
     );
   }
+
+  static resetGuardians(EthereumAddress sender,BigInt threshold,List<EthereumAddress> orderedGuardianWallet){
+    return bytesToHex(
+        CWallet.recoveryModule(Constants.zeroAddress).self.function("resetGuardians").encodeCall([sender, threshold, orderedGuardianWallet]),
+        include0x: true
+    );
+  }
   
 }
