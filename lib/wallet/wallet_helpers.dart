@@ -135,7 +135,7 @@ class WalletHelpers {
     //   salt,
     //   keccak256(getManagerInitCode()),
     // );
-    return "0x588182343dd35344D291faD4beF9942a2564D587";
+    return "0x3855446f2253291f6c75bb67CcD9EC1318A2440D";
   }
 
   static String getSocialRecoveryAddress(String _salt){
