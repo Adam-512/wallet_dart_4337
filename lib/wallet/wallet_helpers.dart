@@ -1,22 +1,20 @@
 import 'dart:convert';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:pointycastle/key_derivators/api.dart';
 import 'package:pointycastle/key_derivators/scrypt.dart';
 import 'package:steel_crypt/steel_crypt.dart';
 import 'package:wallet_dart/constants/constants.dart';
-import 'package:wallet_dart/contracts/entrypoint.dart';
-import 'package:wallet_dart/contracts/factories/EIP4337Manager.g.dart';
-import 'package:wallet_dart/contracts/factories/SafeProxy.g.dart';
 import 'package:wallet_dart/contracts/factories/SocialRecoveryModule.g.dart';
-import 'package:wallet_dart/utils/abi_utils.dart';
-import 'package:wallet_dart/wallet/user_operation.dart';
+import 'package:wallet_dart/contracts/wallet.dart';
+import 'package:wallet_dart/wallet/encode_function_data.dart';
 import 'package:wallet_dart/wallet/wallet_instance.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/src/utils/length_tracking_byte_sink.dart';
 import 'package:web3dart/web3dart.dart';
+
+
 
 class WalletHelpers {
 
@@ -48,7 +46,7 @@ class WalletHelpers {
     AesCrypt aesCrypt = AesCrypt(padding: PaddingAES.pkcs7, key: newPasswordKey);
     newInstance.encryptedSigner = aesCrypt.cbc.encrypt(
         inp: bytesToHex(privateKeyBytes, include0x: true),
-        iv: salt
+        iv: salt.toString(),
     ).toString();
     return newInstance;
   }
@@ -57,7 +55,7 @@ class WalletHelpers {
     try {
       String passwordKey = await _generatePasswordKeyThread(password, salt);
       AesCrypt aesCrypt = AesCrypt(padding: PaddingAES.pkcs7, key: passwordKey);
-      String privateKey = aesCrypt.cbc.decrypt(enc: wallet.encryptedSigner, iv: salt);
+      String privateKey = aesCrypt.cbc.decrypt(enc: wallet.encryptedSigner, iv: salt.toString());
       var privateKeyBytes = hexToBytes(privateKey);
       if (privateKeyBytes.length > 32){
         int trim = privateKeyBytes.length - 32;
@@ -87,12 +85,40 @@ class WalletHelpers {
       salt: salt,
       encryptedSigner: aesCrypt.cbc.encrypt(
         inp: bytesToHex(signer.privateKey, include0x: true),
-        iv: salt
+        iv: salt.toString()
       ).toString(),
     );
   }
 
-  static Future<WalletInstance> createRandom(String password, String salt, [List<EthereumAddress> initGuardians = const []]) async{
+  static Uint8List getInitCode(EthereumAddress safeAccountAddress,EthereumAddress ownerAddress,String salt){
+    LengthTrackingByteSink sink = LengthTrackingByteSink();
+    sink.add(hexToBytes(safeAccountAddress.toString()));
+    sink.add(hexToBytes(EncodeFunctionData.createAccount(ownerAddress,_covertSalt(salt))));
+    return sink.asBytes();
+  }
+
+  static BigInt _decodeBigInt(List<int> bytes) {
+    var negative = bytes.isNotEmpty && bytes[0] & 0x80 == 0x80;
+
+    BigInt result;
+
+    if (bytes.length == 1) {
+      result = BigInt.from(bytes[0]);
+    } else {
+      result = BigInt.zero;
+      for (var i = 0; i < bytes.length; i++) {
+        var item = bytes[bytes.length - i - 1];
+        result |= (BigInt.from(item) << (8 * i));
+      }
+    }
+    return result != BigInt.zero
+        ? negative
+            ? result.toSigned(result.bitLength)
+            : result
+        : BigInt.zero;
+  }
+
+  static Future<WalletInstance> createRandom(String password, String salt,EthereumAddress safeAccountAddress, [List<EthereumAddress> initGuardians = const []]) async{
     var rng = Random.secure();
     EthPrivateKey signer = EthPrivateKey.createRandom(rng);
     //
@@ -101,13 +127,12 @@ class WalletHelpers {
     //
     EthereumAddress initOwner = await signer.extractAddress();
     //
-    EthereumAddress moduleManager = EthereumAddress.fromHex(getWalletManagerAddress(salt));
+    EthereumAddress moduleManager = EthereumAddress.fromHex(getWalletManagerAddress());
     EthereumAddress socialRecovery = EthereumAddress.fromHex(getSocialRecoveryAddress(salt));
     //
+    EthereumAddress walletAddress = await getWalletAddress(safeAccountAddress, initOwner, salt);
     return WalletInstance(
-      walletAddress: EthereumAddress.fromHex(
-        getWalletAddress(initOwner, moduleManager)
-      ),
+      walletAddress: walletAddress,
       moduleManager: moduleManager,
       socialRecovery: socialRecovery,
       initOwner: initOwner.hexEip55,
@@ -115,20 +140,22 @@ class WalletHelpers {
       salt: salt,
       encryptedSigner: aesCrypt.cbc.encrypt(
         inp: bytesToHex(signer.privateKey, include0x: true),
-        iv: salt
+        iv: salt.toString(),
       ).toString(),
     );
   }
 
-  static String getWalletAddress(EthereumAddress initOwner, EthereumAddress moduleManager){
-    return _WalletHelperUtils.getCreate2Address(
-      Constants.singletonFactoryAddress,
-      hexToBytes(bytesToHex(String.fromCharCode(int.parse(UserOperation.initNonce)).codeUnits, include0x: true, forcePadLength: 64)),
-      keccak256(getInitCode(initOwner, moduleManager)),
-    );
+  static BigInt _covertSalt(String salt){
+    int n = ByteData.view(base64Decode(salt).buffer).getInt16(0);
+    print("salt:$n");
+    return BigInt.from(n);
   }
 
-  static String getWalletManagerAddress(String _salt){
+  static Future<EthereumAddress> getWalletAddress(EthereumAddress safeAccountAddress,EthereumAddress owner,String salt) async{
+    return await CWallet.gnosisSafeAccount(safeAccountAddress).getAddress(owner, _covertSalt(salt));
+  }
+
+  static String getWalletManagerAddress(){
     // Uint8List salt = keccak256(Uint8List.fromList("${_salt}_moduleManager".codeUnits));
     // return _WalletHelperUtils.getCreate2Address(
     //   Constants.singletonFactoryAddress,
@@ -145,30 +172,6 @@ class WalletHelpers {
       salt,
       keccak256(getSocialRecoveryInitCode()),
     );
-  }
-
-  static Uint8List getInitCode(EthereumAddress initOwner, EthereumAddress moduleManager){
-    EthereumAddress gnosisSafeSingleton = EthereumAddress.fromHex("0x3E5c63644E683549055b9Be8653de26E0B4CD36E");
-    //
-    var walletProxyArgsEncoded = encodeAbi(
-        ['address', 'address', 'address'],
-        [gnosisSafeSingleton, moduleManager, initOwner]);
-    //
-    LengthTrackingByteSink sink = LengthTrackingByteSink();
-    sink.add(SafeProxy.byteCode);
-    sink.add(walletProxyArgsEncoded);
-    return sink.asBytes();
-  }
-
-  static Uint8List getManagerInitCode(){
-    var managerArgsEncoded = encodeAbi(
-        ['address'],
-        [CEntrypoint.address]);
-    //
-    LengthTrackingByteSink sink = LengthTrackingByteSink();
-    sink.add(EIP4337Manager.byteCode);
-    sink.add(managerArgsEncoded);
-    return sink.asBytes();
   }
 
   static Uint8List getSocialRecoveryInitCode(){

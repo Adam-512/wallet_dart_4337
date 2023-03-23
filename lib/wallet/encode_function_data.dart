@@ -33,8 +33,8 @@ class EncodeFunctionData {
     return bytesToHex(CWallet.multiSendCallOnlyInterface.self.function("multiSend").encodeCall([transactions]), include0x: true);
   }
 
-  static execTransactionFromModule(EthereumAddress to, BigInt value, Uint8List data, BigInt operation){
-    return bytesToHex(CWallet.interface.self.function("execTransactionFromModule").encodeCall([
+  static execTransactionFromModule(EthereumAddress to, BigInt value, Uint8List data, BigInt operation, EthereumAddress address){
+    return bytesToHex(CWallet.safeInterface(address).self.function("execTransactionFromModule").encodeCall([
       to,
       value,
       data,
@@ -232,4 +232,10 @@ class EncodeFunctionData {
     );
   }
   
+  static createAccount(EthereumAddress owner, BigInt salt) {
+    return bytesToHex(
+      CWallet.gnosisSafeAccount(Constants.zeroAddress).self.function("createAccount").encodeCall([owner, salt]),
+      include0x: true,
+    );
+  }
 }

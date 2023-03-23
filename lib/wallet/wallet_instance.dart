@@ -37,7 +37,7 @@ class WalletInstance {
         'socialRecovery': socialRecovery.hexEip55,
         'initOwner': initOwner,
         'initGuardians': initGuardians.map((e) => e.hex).toList(),
-        'salt': salt,
+        'salt': salt.toString(),
         'encryptedSigner': encryptedSigner,
       };
 }
