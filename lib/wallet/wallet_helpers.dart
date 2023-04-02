@@ -148,7 +148,7 @@ class WalletHelpers {
   static BigInt _covertSalt(String salt){
     int n = ByteData.view(base64Decode(salt).buffer).getInt16(0);
     print("salt:$n");
-    return BigInt.from(n);
+    return BigInt.from(n.abs());
   }
 
   static Future<EthereumAddress> getWalletAddress(EthereumAddress safeAccountAddress,EthereumAddress owner,String salt) async{
