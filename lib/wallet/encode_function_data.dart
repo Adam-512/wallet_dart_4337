@@ -175,16 +175,16 @@ class EncodeFunctionData {
     );
   }
 
-  static enableModule(EthereumAddress moduleAddress){
+  static enableModule({required EthereumAddress moduleAddress,required EthereumAddress address}){
     return bytesToHex(
-        CWallet.interface.self.function("enableModule").encodeCall([moduleAddress]),
+        CWallet.safeInterface(address).self.function("enableModule").encodeCall([moduleAddress]),
         include0x: true
     );
   }
 
-  static disableModule(EthereumAddress prevModule,EthereumAddress targetModule){
+  static disableModule({required EthereumAddress prevModule,required EthereumAddress targetModule,required EthereumAddress address}){
     return bytesToHex(
-        CWallet.interface.self.function("disableModule").encodeCall([prevModule,targetModule]),
+        CWallet.safeInterface(address).self.function("disableModule").encodeCall([prevModule,targetModule]),
         include0x: true
     );
   }
